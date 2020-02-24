@@ -7,4 +7,6 @@ jobs:
   create_pr:
     runs-on: [ubuntu-latest]
     steps:
+      - name: Check out repository
+      - uses: actions/checkout@develop
       - uses: ./../gitactions/create-pr
