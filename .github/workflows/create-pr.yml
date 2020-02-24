@@ -8,5 +8,6 @@ jobs:
     runs-on: [ubuntu-latest]
     steps:
       - name: Check out repository
-      - uses: actions/checkout@develop
-      - uses: ./../gitactions/create-pr
+        uses: actions/checkout@develop
+      - name: Execute the action
+        uses: ./../gitactions/create-pr
