@@ -10,4 +10,4 @@ jobs:
       - name: Check out actions
         uses: actions/checkout@master
       - name: Execute the action
-        uses: ./../gitactions/create-pr
+        uses: ./gitactions/create-pr
