@@ -1,13 +1,15 @@
-name: Test
+name: Create PR
 on:
   push:
     branches: 
       - release/*
 jobs:
-  create_pr:
-    runs-on: [ubuntu-latest]
-    steps:
-      - name: Check out actions
-        uses: actions/checkout@master
-      - name: Execute the action
-        uses: ./gitactions/create-pr
+  auto-pull-request:
+      runs-on: ubuntu-latest
+      steps:
+        - name: pull-request-action
+          uses: vsoch/pull-request-action@master
+          env:
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+            BRANCH_PREFIX: "release/"
+            PULL_REQUEST_BRANCH: "develop"
