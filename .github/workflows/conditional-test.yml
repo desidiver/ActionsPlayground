@@ -22,5 +22,4 @@ jobs:
         run: echo 'RUN QA'
       - name: Otherwise configure AWS credentials and Deploy to Release S3
         if: ${{ ! endsWith( github.ref_name , '-qa' ) }}        
-      - name: deploy assets to S3 bucket
         run: echo 'not QA'
