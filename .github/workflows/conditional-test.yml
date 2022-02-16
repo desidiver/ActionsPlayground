@@ -1,0 +1,25 @@
+name: Testing conditions
+on: 
+  push:
+    tags:
+      - '*'
+  workflow_dispatch:
+    branches:
+      - '*'
+jobs:
+  deploy_source:
+    name: build S3
+    strategy:
+      matrix:
+        node-version: [14.x]
+    runs-on: ubuntu-latest
+    steps:
+      - name: echo name
+        run: echo ${{github.ref_name}}
+      - name: configure AWS credentials and Deploy to QA
+        if: ${{ endsWith( github.ref_name , '-qa' ) }}        
+        run: echo 'RUN QA'
+      - name: Otherwise configure AWS credentials and Deploy to Release S3
+        if: ${{ ! endsWith( github.ref_name , '-qa' ) }}        
+      - name: deploy assets to S3 bucket
+        run: echo 'not QA'
